@@ -1,0 +1,33 @@
+.metro-nav .metro-nav-block a .info {
+    transition: all 0.4s ease-in-out 0s;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -o-transition: all 0.4s ease-in-out 0s;
+    }
+    .metro-nav .metro-nav-block .status, .metro-nav .metro-nav-block .tile-status {
+        background-color: burlywood;
+        /* bottom: -10px; */
+        font-size: 14px;
+        left: 10px;
+        max-height: 30px;
+        max-width: 90px;
+        /* position: absolute; */
+        font-weight:bold;
+        letter-spacing: 0.06em;
+    }
+    .metro-nav {
+        /*font-family: 'MyriadPro-Light';*/
+        font-family: "LatoRegular","Lucida Grande","Lucida Sans Unicode",Helvetica,sans-serif !important;
+    }
+    .metro-fix-view .metro-nav-block.double {
+        width: 207px !important;
+    }
+    .metro-fix-view .metro-nav-block.long .value i {
+        font-size: 90px;
+    }
+    .glyphicon-file:before {
+        content: "\e022";
+    }
+    .glyphicon-user:before {
+        content: "\e008";
+    }

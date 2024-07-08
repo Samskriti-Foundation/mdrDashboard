@@ -1,0 +1,39 @@
+    
+.metro-nav .nav-block-purple {
+    background:  #9d4a9c;
+}
+.metro-fix-view .metro-nav-block.double {
+    width: 207px !important;
+}
+
+.metro-fix-view .metro-nav-block {
+    color: white;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-weight: 300;
+    height: 90px;
+    letter-spacing: 0.02em;
+    line-height: 20px;
+    margin: 0 1% 1% 0;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    width: 100px !important;
+    z-index: 1;
+}
+
+
+.metro-nav .metro-nav-block.double {
+    width: 28%;
+}
+
+.metro-nav .metro-nav-block i {
+    font-size: 35px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.metro-nav .metro-nav-block:last-child {
+    margin-right: 0;
+}
