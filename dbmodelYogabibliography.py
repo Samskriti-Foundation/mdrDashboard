@@ -5,14 +5,19 @@ def get_credentials(user):
     dbcredentials = yaml.load(open("db_credentials.yaml"), SafeLoader)
     if user in dbcredentials and 'db' in dbcredentials[user] and 'user' in dbcredentials[user] and 'password' in dbcredentials[user]:
         return dbcredentials[user]['db'], dbcredentials[user]['user'], dbcredentials[user]['password']
+    return None, None, None
+def get_dburl():
+    dbcredentials = yaml.load(open("db_credentials.yaml"), SafeLoader)
+    if "database_url" in dbcredentials: return dbcredentials["database_url"]
     return None
-# def get_db():
-#     db = yaml.load(open('db.yaml'), SafeLoader)
-#     return db['History']
 db, db_user, db_password = get_credentials('yogabibliography')
-database = MySQLDatabase(db, **{'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'port': 3306, 'user': db_user, 'password': db_password})
-
-
+if db == None: database = None
+else:
+    database_url = get_dburl()
+    if database_url == None: database = MySQLDatabase(db, **{'charset': 'utf8', 'sql_mode': 'PIPES_AS_CONCAT', 'use_unicode': True, 'port': 3306, 'user': db_user, 'password': db_password})
+    else:
+        database = MySQLDatabase(db, host=database_url, port=3306, user=db_user, password=db_password)
+        print('yogabibliography db url: %s'%database_url)
 class UnknownField(object):
     def __init__(self, *_, **__): pass
 

@@ -1,10 +1,14 @@
 
-function renderDashboard(url, port, prefix, jsonKey) {
+function renderDashboard(prefix, jsonKey) {
+    // url = "74.225.250.241";
+    url = "127.0.0.1"; 
+    port="5000";
     const divMainTableContainer = document.getElementById("mainTableContainer");
     fetch('http://' + url + ':' + port + prefix)
         .then(response => response.json())
         .then(json => {
       dataArray = json[jsonKey];
+      if (dataArray != null) {
       const divTblContainer = document.createElement("div");
       divTblContainer.id = "tableContainer";
       divTblContainer.className = "metro-nav metro-fix-view";
@@ -41,6 +45,13 @@ function renderDashboard(url, port, prefix, jsonKey) {
     divInnerTableContainer.appendChild(element_i);
     divInnerTableContainer.appendChild(divInfo);
     divTblContainer.appendChild(divInnerTableContainer)
-    divMainTableContainer.appendChild(divTblContainer);
+    divMainTableContainer.appendChild(divTblContainer);}
+    else {
+      const para = document.createElement("h5");
+      para.innerHTML = "this dashboard is empty, it is likely that no such database exists";
+      const divCounts = document.getElementById("counts");
+      divCounts.removeChild(document.getElementById("mainTableContainer"));
+      divCounts.appendChild(para);
+    }
   });
 }
