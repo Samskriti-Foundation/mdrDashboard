@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Science & Technology</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheetFromsitePagesmdr.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <link rel="stylesheet" type="text/css" href="assets/css/core.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <div id="header">
+    <div id="navbar" class="flex-container">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="YogaBibliography.html">Yogabibliography</a></li>
+            <li><a href="History.html">History</a></li>
+            <li><a href="Metallurgy.html">Metallurgy</a></li>
+            <li><a href="Philosophy.html">Philosophy</a></li>
+            <li><a href="branches-of-science/index.html">Science & Technology</a></li>
+        </ul>
+    </div>
+    <h2>Science & Technology</h2>
+    </div>
+    
+    <div class="main main-raised">
+      <div class="container">
+          <div class="section">
+              <div class="row">
+                  <div id="dashboard" class="col-md-12"></div>
+              </div>
+          </div>
+      </div>
+    </div>
+ 
+    <script src="renderDashboard.js"></script>
+    <script>
+        prefix="/app/sciencetechnology";
+        jsonKey = "ScienceTechnology"
+        renderDashboard(prefix, jsonKey);
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Mathematics</title>
+    <link rel="stylesheet" type="text/css" href="../../stylesheet.css" />
+  </head>
+  <body>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/core.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.min.css" />
+    <div id="header">
+    <div id="navbar" class="flex-container">
+      <ul>
+        <li><a href="index.html">Formal Sciences</a></li>
+        <li><a href="Mathematics.html">Mathematics</a></li>
+    </ul>
+    </div>
+    <h2>All Science & Technology</h2>
+    </div>
+    
+    <div id="counts">
+      <div id="mainTableContainer" style="min-height: 100px; padding: 2px; display: block;"></div>
+    </div>  
+    <script src="../../dashboard.js"></script>
+    <script>
+      jsonKey = "Mathematics"; prefix="/app/mathematics";
+      dash = dashboardCounts(jsonKey, prefix);
+      dash.then(value => {
+        console.log(value);
+        render(value);
+      })
+      .catch(error => {
+        console.error("Error in one of the promises:", error);
+      });
+      // renderDashboard(prefix, jsonKey);
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Philosophy</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  </head>
+  <body>
+    <link rel="stylesheet" type="text/css" href="assets/css/core.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <div id="header">
+    <div id="navbar" class="flex-container">
+        <ul> 
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Yogabibliography.html">Yogabibliography</a></li>
+            <li><a href="History.html">History</a></li>
+            <li><a href="Metallurgy.html">Metallurgy</a></li>
+            <li><a href="Philosophy.html">Philosophy</a></li>
+            <li><a href="branches-of-science/index.html">Science & Technology</a></li>
+        </ul>
+    </div>
+    <h2>Philosophy</h2>
+    </div>
+    
+    <div id="counts">
+      <div id="mainTableContainer" style="min-height: 100px; padding: 2px; display: block;"></div>
+    </div>
+    <!-- <script src="../renderDashboard.js"></script>   -->
+    <script src="dashboard.js"></script>
+    <script>
+        jsonKey = "Philosophy"; prefix="/app/philosophy";
+        dash = dashboardCounts(jsonKey, prefix);
+        dash.then(value => {
+          console.log(value);
+          render(value);
+        })
+        .catch(error => {
+          console.error("Error in one of the promises:", error);
+        });
+        // renderDashboard(prefix, jsonKey);
+    </script>
+</body>
+</html>

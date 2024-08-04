@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Metallurgy</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheetFromsitePagesmdr.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <link rel="stylesheet" type="text/css" href="assets/css/core.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+    <div id="header">
+    <div id="navbar" class="flex-container">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="YogaBibliography.html">Yogabibliography</a></li>
+            <li><a href="History.html">History</a></li>
+            <li><a href="Metallurgy.html">Metallurgy</a></li>
+            <li><a href="Philosophy.html">Philosophy</a></li>
+            <li><a href="ScienceTechnology.html">Science & Technology</a></li>
+        </ul>
+    </div>
+    <h2>Metallurgy</h2>
+    </div>
+    
+    <div class="main main-raised">
+      <div class="container">
+          <div class="section">
+              <div class="row">
+                  <div id="dashboard" class="col-md-12"></div>
+              </div>
+          </div>
+      </div>
+    </div>
+ 
+    <!-- <script src="renderDashboard.js"></script>   -->
+    <script src="dashboard.js"></script>
+    <script>
+        jsonKey = "Metallurgy"; prefix="/app/metallurgy";
+        dash = dashboardCounts(jsonKey, prefix);
+        dash.then(value => {
+          console.log(value);
+          render(value);
+        })
+        .catch(error => {
+          console.error("Error in one of the promises:", error);
+        });
+        // renderDashboard(prefix, jsonKey);
+    </script>
+</body>
+</html>

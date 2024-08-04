@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>All Science & Technology</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="../stylesheetFromsitePagesmdr.css" />
+  </head>
+  <body>
+    <link rel="stylesheet" type="text/css" href="../assets/css/core.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css" />
+    <div id="header">
+    <div id="navbar" class="flex-container">
+        <ul>
+            <li><a href="../index.html">Main</a></li>
+            <li><a href="index.html">All Sciences</a></li>
+            <li><a href="ScienceTechnology.html">Science & Technology</a></li>
+            <li><a href="natural/index.html">Natural Sciences</a></li>
+            <li><a href="formal/index.html">Formal Sciences</a></li>
+        </ul>
+    </div>
+    <h2>All Science & Technology</h2>
+    </div>
+    
+    <div class="main main-raised">
+      <div class="container">
+          <div class="section">
+              <div class="row">
+                  <div id="dashboard" class="col-md-12"></div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <script src="../dashboard.js"></script>
+    <script>
+      const dashboardArgs = [
+                             /* {"ScienceTechnology":"/app/sciencetechnology"},
+                             {"Astronomy":"/app/astronomy"},
+                             {"Botany":"/app/botany"},
+                             {"Chemistry":"/app/chemistry"},
+                             {"EarthSciences":"/app/earthsciences"},
+                             {"Ecology":"/app/ecology"}, */
+                             {"Physics":"/app/physics"},
+                            ]
+      var dashboards = []
+      dashboardArgs.forEach(element => {
+        Object.entries(element).forEach(([jsonKey, prefix]) => {
+          // console.log('k:', jsonKey, 'v:', prefix);
+          dashboards.push(dashboardCounts(jsonKey, prefix));
+        });
+      });
+      Promise.all(dashboards)
+        .then(values => {
+          totals = totalthem(values);
+          console.log("totals:", totals);
+          render(totals);
+        })
+        .catch(error => {
+          console.error("Error in one of the promises:", error);
+        });
+    </script>
+</body>
+</html>
