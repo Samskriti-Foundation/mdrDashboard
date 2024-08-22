@@ -2,7 +2,7 @@
 FROM python:3.11-slim-buster
 MAINTAINER Narasimhan M.G. github.com/Naras
 COPY ./mdrRestApi.py /usr/local/mdrDashboard/
-COPY ./sqlDashboardCountsQuery.py /usr/local/mdrDashboard/
+COPY ./sqlDashboardQry.py /usr/local/mdrDashboard/
 COPY ./db_credentials.yaml /usr/local/mdrDashboard/
 COPY ./requirements.txt /usr/local/mdrDashboard/
 EXPOSE 5000

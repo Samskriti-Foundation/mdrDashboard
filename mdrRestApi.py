@@ -5,7 +5,8 @@ from flask import Flask, jsonify
 from flask_cors import cross_origin
 import yaml
 from yaml import SafeLoader
-import sqlDashboardCountsQuery
+
+import sqlDashboardQry
 
 yamlFile = yaml.load(open("db_credentials.yaml"), SafeLoader)
 
@@ -21,10 +22,10 @@ def hello():
 @app.route('/app/<string:prefix>')
 @cross_origin()
 def dashboard(prefix):
-  return jsonify(sqlDashboardCountsQuery.getDataQryResults(yamlFile[prefix]['db']))
+  return jsonify(sqlDashboardQry.getDataQryResults(yamlFile[prefix]['db']))
 @app.route('/allcounts')
 @cross_origin()
 def dashboard_sqlQuery():
-    return jsonify(sqlDashboardCountsQuery.getDataQryResultsAll())
+    return jsonify(sqlDashboardQry.getDataQryResultsAll())
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port=5000)
