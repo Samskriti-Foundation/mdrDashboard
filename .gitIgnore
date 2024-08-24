@@ -14,3 +14,7 @@ ENV/
 ######################
 .DS_Store
 .DS_Store?
+mdrRestApi_pewee.py
+sqlDashboardQry_peewee.py
+requirements_peewee.txt
+dbmodelYogabibliography-SQlAlchemy.py
