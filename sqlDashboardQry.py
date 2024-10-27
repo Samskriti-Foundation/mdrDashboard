@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, textde
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 import yaml
 from yaml.loader import SafeLoader
@@ -29,10 +29,11 @@ Session = sessionmaker(bind=engine)
 #     return result
 def getDataQryResults(dbn):
     yamlFile = yaml.load(open("db_credentials.yaml"), SafeLoader)
-    keys = {1:'Manuscripts', 2:'Books', 3:'Articles'}
+    keys = {2:'Manuscripts', 1:'Books', 3:'Articles'}
     jsonKeys = yamlFile['jsonKeys']
     dictDocs = {jsonKeys[dbn]: {'Manuscripts': 0, 'Books': 0, 'Articles': 0, 'Users': 0}}
     dictUsers = {}
+    dictDocsPerSub = {jsonKeys[dbn]: {}}
     qryDocs = '''
         SELECT :dbn AS dbname, DocumentType, COUNT(DocumentType) 
         FROM {dbn}.omds_digital_manuscript 
@@ -40,6 +41,11 @@ def getDataQryResults(dbn):
         GROUP BY DocumentType
         '''.format(dbn=dbn)
     qryUsers = 'SELECT :dbn as dbname, COUNT(*) FROM {dbn}.omds_employeemaster WHERE IsDeleted=0'.format(dbn=dbn)
+    qryDocsPerSub = '''
+                SELECT :dbn as dbname, sub.name, dm.DocumentType, COUNT(dm.name) 
+                FROM {dbn}.omds_digital_manuscript dm, {dbn}.omds_category sub 
+                WHERE dm.isDeleted=0 and dm.CategoryFkid = sub.id GROUP BY dm.DocumentType, sub.name
+                '''.format(dbn=dbn)
 
     session = Session()
     try:
@@ -50,6 +56,16 @@ def getDataQryResults(dbn):
         for row in result.fetchall():
             # print('%18s %4d'%(row[0], row[1]))
             dictUsers[row[0]] = row[1]
+        result = session.execute(text(qryDocsPerSub), {'dbn': dbn})
+        dictInner = {'Manuscripts': 0, 'Books': 0, 'Articles': 0}
+        for row in result.fetchall():
+            dictInner[keys[row[2]]] = row[3]
+            dictDocsPerSub[jsonKeys[row[0]]][row[1]] = dictInner
+        for k, v in dictDocsPerSub.items():
+            vplus = dictDocs[k]
+            vplus['Subjects'] = {}
+            for k2, v2 in v.items(): vplus['Subjects'][k2] = v2
+            dictDocs[k] = vplus
     finally:
         session.close()
     for k, v in dictUsers.items(): dictDocs[jsonKeys[k]]['Users'] = v
